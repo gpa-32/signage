@@ -29,8 +29,10 @@ Gdy nie podasz hasła, losowe jest w `server/data/admin-password.txt`. Zmienisz 
 Dane (baza, pliki, zrzuty ekranu, APK) leżą w `server/data/`. Kopia zapasowa = skopiowanie tego katalogu.
 Aktualizacja serwera: `git pull && docker compose up -d --build`.
 
-Jeśli na VPS działa już serwer www (np. Caddy/nginx serwera Domofon SIP), pomiń kontener `caddy`
-i przekieruj domenę na port 3000 kontenera `signage` (potrzebna obsługa WebSocket i plików do 4 GB).
+Jeśli na VPS działa już serwer www (np. Caddy/nginx serwera Domofon SIP), `install.sh` wykryje zajęte
+porty 80/443, uruchomi signage lokalnie (port 3000+) i dopisze domenę do istniejącego Caddy lub nginx
+(z certyfikatem). Gdy serwer www działa w kontenerze, skrypt wypisze, co dodać ręcznie.
+Signage potrzebuje osobnej (sub)domeny, np. `signage.nettrade.pl`.
 
 ## 2. Aplikacja na tablet
 

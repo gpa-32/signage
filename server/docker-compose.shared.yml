@@ -1,0 +1,13 @@
+# Wariant dla VPS, na którym działa już serwer www (Caddy / nginx) na portach 80/443.
+# Serwer signage nasłuchuje lokalnie, a istniejący serwer www przekazuje do niego ruch dla domeny signage.
+services:
+  signage:
+    build: .
+    restart: unless-stopped
+    environment:
+      - PUBLIC_URL=https://${DOMAIN}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD:-}
+    ports:
+      - "${SIGNAGE_BIND:-127.0.0.1}:${SIGNAGE_PORT:-3000}:3000"
+    volumes:
+      - ./data:/data
