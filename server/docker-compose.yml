@@ -1,0 +1,22 @@
+# Serwer Digital Signage + Caddy (automatyczny certyfikat HTTPS Let's Encrypt)
+services:
+  signage:
+    build: .
+    restart: unless-stopped
+    environment:
+      - PUBLIC_URL=https://${DOMAIN}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD:-}
+    volumes:
+      - ./data:/data
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    ports: ["80:80", "443:443"]
+    environment:
+      - DOMAIN=${DOMAIN}
+    volumes:
+      - ./deploy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+    depends_on: [signage]
+volumes:
+  caddy_data:

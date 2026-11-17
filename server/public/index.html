@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Digital Signage – panel</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="login" class="hidden">
+  <form id="loginForm" class="card login">
+    <h1>Digital Signage</h1>
+    <label>Login<input name="user" value="admin" autocomplete="username"></label>
+    <label>Hasło<input name="password" type="password" autocomplete="current-password" autofocus></label>
+    <button>Zaloguj</button>
+    <p class="err" id="loginErr"></p>
+  </form>
+</div>
+
+<div id="app" class="hidden">
+  <header>
+    <b>Digital Signage</b>
+    <nav id="tabs">
+      <a data-tab="devices">Tablety</a>
+      <a data-tab="media">Multimedia</a>
+      <a data-tab="playlists">Playlisty</a>
+      <a data-tab="groups">Grupy i harmonogram</a>
+      <a data-tab="update">Aktualizacja aplikacji</a>
+      <a data-tab="log">Dziennik</a>
+      <a data-tab="account">Konto</a>
+    </nav>
+    <span class="grow"></span>
+    <button class="ghost" id="logout">Wyloguj</button>
+  </header>
+  <main id="main"></main>
+</div>
+
+<div id="modal" class="hidden"><div class="modal-box"><button class="close" id="modalClose">✕</button><div id="modalBody"></div></div></div>
+<div id="toast"></div>
+<script src="app.js"></script>
+</body>
+</html>
